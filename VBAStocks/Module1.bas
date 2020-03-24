@@ -28,11 +28,11 @@ For Each ws In Worksheets
    start = 2
    
   
-   rowCount = Cells(Rows.Count, "A").End(xlUp).Row
+   rowCount = ws.Cells(Rows.Count, "A").End(xlUp).Row
    
    For i = 2 To rowCount
       
-       If Cells(i + 1, 1).Value <> Cells(i, 1).Value Then
+       If ws.Cells(i + 1, 1).Value <> ws.Cells(i, 1).Value Then
            
            total = total + Cells(i, 7).Value
           
@@ -46,19 +46,19 @@ For Each ws In Worksheets
                
                If Cells(start, 3) = 0 Then
                    For find_value = start To i
-                       If Cells(find_value, 3).Value <> 0 Then
+                       If ws.Cells(find_value, 3).Value <> 0 Then
                            start = find_value
                            Exit For
                        End If
                     Next find_value
                End If
                
-               change = (Cells(i, 6) - Cells(start, 3))
-               percentChange = Round((change / Cells(start, 3) * 100), 2)
+               change = (ws.Cells(i, 6) - ws.Cells(start, 3))
+               percentChange = Round((change / ws.Cells(start, 3) * 100), 2)
               
                start = i + 1
                
-               ws.Range("I" & 2 + j).Value = Cells(i, 1).Value
+               ws.Range("I" & 2 + j).Value = ws.Cells(i, 1).Value
                ws.Range("J" & 2 + j).Value = Round(change, 2)
                ws.Range("K" & 2 + j).Value = "%" & percentChange
                ws.Range("L" & 2 + j).Value = total
@@ -79,13 +79,12 @@ For Each ws In Worksheets
            days = 0
        
        Else
-           total = total + Cells(i, 7).Value
+           total = total + ws.Cells(i, 7).Value
        End If
    Next i
    
    Next ws
    
 End Sub
-
 
 
