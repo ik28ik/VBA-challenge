@@ -54,7 +54,7 @@ For Each ws In Worksheets
                End If
                
                change = (ws.Cells(i, 6) - ws.Cells(start, 3))
-               percentChange = Round((change / ws.Cells(start, 3) * 100), 2)
+               percentChange = Round((change / Cells(start, 3) * 100), 2)
               
                start = i + 1
                
